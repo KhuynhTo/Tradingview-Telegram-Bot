@@ -1,35 +1,19 @@
 from flask import Flask, request
 from threading import Thread
 import telegrambot
-import captureutil
-import pandas as pd
-from tabulate import tabulate
-import tradingview
-
+import json
 app = Flask('')
 @app.route('/webhook', methods=['POST', 'GET'])
 def post_message():
   try:
     jsonRequest=request.args.get("jsonRequest")
-    chart = request.args.get("chart")
-    tblfmt = request.args.get("tblfmt", default = 'plain')
-    ticker = request.args.get('ticker', default='NONE')
-    delivery = request.args.get("delivery", default = 'together')
-    print("[I] Chart : ",chart)
-    print("[I] Ticker : ",ticker)
     if request.method == 'POST':
       payload = request.data
       if jsonRequest == "true":
-        jsonPayload = request.json
-        if 'Custom' in jsonPayload:
-          chart = jsonPayload.pop('Custom')
-        dataframe = pd.DataFrame(jsonPayload, index=[0]).transpose()
-        payload = '```'+tabulate(dataframe,tablefmt=tblfmt)+'```'
+        payload = json.dumps(request.json, indent=4)
       print("[I] Payload: \n", payload)
-      if(delivery == 'asap'):
-        telegrambot.sendMessage(payload)
-      if chart != None:
-        captureutil.send_chart_async(chart, ticker, payload, delivery)
+      #telegrambot.sendMessage(payload)
+      telegrambot.sendMessage(payload.decode('utf-8'))
       return 'success', 200
     else:
       print("Get request")
@@ -40,7 +24,6 @@ def post_message():
 
 @app.route('/')
 def main():
-  tradingview.login()
   return 'Your bot is alive!'
 
 def run():

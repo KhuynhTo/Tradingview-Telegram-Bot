@@ -1,0 +1,1 @@
+9999999999{"name": "sniffio", "version": "1.2.0", "summary": "Sniff out which async library your code is running under", "platform": "", "requires_dist": ["contextvars (>=2.1) ; python_version < '3.7'"], "requires_python": ">=3.5", "files": [], "_cache_version": "1.0.0"}

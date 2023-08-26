@@ -1,0 +1,1 @@
+9999999999{"name": "tabulate", "version": "0.8.9", "summary": "Pretty-print tabular data", "platform": "", "requires_dist": ["wcwidth ; extra == 'widechars'"], "requires_python": "", "files": [], "_cache_version": "1.0.0"}

@@ -1,0 +1,1 @@
+9999999999{"name": "wsproto", "version": "1.0.0", "summary": "WebSockets state-machine based protocol implementation", "platform": "", "requires_dist": ["h11 (<1,>=0.9.0)", "dataclasses ; python_version < \"3.7\""], "requires_python": ">=3.6.1", "files": [], "_cache_version": "1.0.0"}
